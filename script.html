@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ScamShield</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/scamshield logo.png">
+</head>
+
+<body>
+
+<!-- =========================================
+     NAVBAR
+========================================= -->
+
+<nav class="navbar">
+
+    <!-- LEFT: BRAND -->
+    <div class="brand">
+
+        <div class="brand-shield">
+            <a href="script.html"><img src="images/scamshield logo.png" alt="logo" width="50px"></a>
+        </div>
+
+        <div>
+            <strong>
+                <a href="script.html">Scam<span>Shield</span></a>
+            </strong>
+
+            <small>
+                PAYMENT PROTECTION
+            </small>
+        </div>
+
+    </div>
+
+
+    <!-- CENTER: MAIN NAVIGATION -->
+    <div class="nav-links">
+
+        <a href="#home">
+            Home
+        </a>
+
+        <a href="#checker">
+            Check Payment
+        </a>
+
+        <a href="#features">
+            Protection Tools
+        </a>
+
+        <a href="#how">
+            How It Works
+        </a>
+
+    </div>
+
+
+    <!-- RIGHT: ACCOUNT -->
+<div class="nav-account">
+
+    <a href="#signup" class="signup-btn">
+        Sign Up
+    </a>
+
+    <a href="#profile" class="profile-btn" aria-label="Profile" title="Profile">
+        <span class="profile-icon">👤</span>
+    </a>
+
+</div>
+
+</nav>
+
+<!-- =========================================
+     HERO
+========================================= -->
+
+<section class="hero" id="home">
+
+    <div class="hero-left">
+
+        <div class="live-badge">
+            <span class="live-dot"></span>
+            LIVE PAYMENT PROTECTION
+        </div>
+
+        <h1>
+            Don't just detect the scam.
+            <span>Stop the payment.</span>
+        </h1>
+
+        <p class="hero-description">
+            ScamShield analyses payment details, messages and suspicious
+            patterns before you send money — giving you a clear,
+            explainable risk signal.
+        </p>
+
+        <div class="hero-actions">
+
+            <button class="primary-button" onclick="scrollToChecker()">
+                Check a Payment
+                <span>→</span>
+            </button>
+
+            <button class="ghost-button" onclick="scrollToHow()">
+                How it works
+            </button>
+
+        </div>
+
+        <div class="hero-stats">
+
+            <div>
+                <strong>5+</strong>
+                <span>Risk signals</span>
+            </div>
+
+            <div>
+                <strong>Real-time</strong>
+                <span>Analysis</span>
+            </div>
+
+            <div>
+                <strong>Explainable</strong>
+                <span>Results</span>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================
+         HERO SECURITY CARD
+         Hidden until payment analysis
+    ====================================== -->
+
+    <div class="hero-right">
+
+        <div class="security-card" id="heroSecurityCard">
+
+            <div class="card-header">
+
+                <div class="card-label">
+                    <span class="pulse-dot"></span>
+                    SCAMSHIELD ENGINE
+                </div>
+
+                <div class="shield-mini">
+                    S
+                </div>
+
+            </div>
+
+
+            <!-- RISK SCORE -->
+
+            <div class="scan-ring">
+
+                <div class="scan-core">
+
+                    <span id="heroRiskScore"></span>
+
+                    <small>RISK</small>
+
+                </div>
+
+            </div>
+
+
+            <!-- PAYMENT DETAILS -->
+
+            <div class="transaction-info">
+
+                <div>
+                    <small>RECIPIENT</small>
+                    <strong id="heroUpi"></strong>
+                </div>
+
+                <div>
+                    <small>AMOUNT</small>
+                    <strong id="heroAmount"></strong>
+                </div>
+
+            </div>
+
+
+            <!-- MESSAGE -->
+
+            <div
+                id="heroMessage"
+                style="
+                    margin-top:10px;
+                    background:#12171c;
+                    border:1px solid #272d34;
+                    padding:13px;
+                    border-radius:8px;
+                "
+            >
+
+                <small
+                    style="
+                        display:block;
+                        color:#626b75;
+                        font-size:8px;
+                        letter-spacing:1px;
+                        margin-bottom:5px;
+                    "
+                >
+                    MESSAGE
+                </small>
+
+                <strong
+                    id="heroMessageText"
+                    style="
+                        display:block;
+                        font-size:11px;
+                        color:#f3f5f6;
+                        line-height:1.5;
+                        word-break:break-word;
+                    "
+                ></strong>
+
+            </div>
+
+
+            <!-- ANALYSIS STATUS -->
+
+            <div class="analysis-status">
+
+                <div class="status-row">
+                    <span>Recipient analysis</span>
+                    <b id="heroRecipientStatus">✓</b>
+                </div>
+
+                <div class="status-row">
+                    <span>Message analysis</span>
+                    <b id="heroMessageStatus">✓</b>
+                </div>
+
+                <div class="status-row warning">
+                    <span>Suspicious pattern</span>
+                    <b id="heroPatternStatus">!</b>
+                </div>
+
+            </div>
+
+
+            <!-- RISK FOOTER -->
+
+            <div class="risk-footer">
+
+                <span id="heroRiskLabel">
+                    RISK
+                </span>
+
+                <div class="risk-line">
+                    <div id="heroRiskLine"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- FLOATING TAGS -->
+
+        <div class="floating-tag tag-one" id="heroTagRecipient">
+            ✓ Recipient scan
+        </div>
+
+        <div class="floating-tag tag-two" id="heroTagRisk">
+            ⚠ Risk detected
+        </div>
+
+        <div class="floating-tag tag-three" id="heroTagAmount">
+            ₹0 payment
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     PAYMENT CHECKER
+========================================= -->
+
+<section class="checker-section" id="checker">
+
+    <div class="section-heading">
+
+        <h2>
+            Check before
+            <span>you pay.</span>
+        </h2>
+
+        <p>
+            Enter the recipient, amount and message associated with a
+            payment. ScamShield checks multiple signals and explains
+            why the payment may be risky.
+        </p>
+
+    </div>
+
+
+    <div class="checker">
+
+        <!-- FORM -->
+
+        <div class="checker-form">
+
+            <div class="form-title">
+
+                <span>PAYMENT DETAILS</span>
+
+                <small>SECURE ANALYSIS</small>
+
+            </div>
+
+
+            <!-- UPI -->
+
+            <div class="input-group">
+
+                <label>
+                    RECIPIENT / UPI ID
+                </label>
+
+                <div class="input-box">
+
+                    <span>@</span>
+
+                    <input
+                        type="text"
+                        id="upi"
+                        placeholder="example@upi"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- AMOUNT -->
+
+            <div class="input-group">
+
+                <label>
+                    PAYMENT AMOUNT
+                </label>
+
+                <div class="input-box">
+
+                    <span>₹</span>
+
+                    <input
+                        type="number"
+                        id="amount"
+                        placeholder="Enter amount"
+                        min="1"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- MESSAGE -->
+
+            <div class="input-group">
+
+                <label>
+                    MESSAGE
+                    <em>OPTIONAL</em>
+                </label>
+
+                <textarea
+                    id="message"
+                    placeholder="Paste the SMS, WhatsApp message or payment request here..."
+                ></textarea>
+
+            </div>
+
+
+            <!-- ANALYSE -->
+
+            <button
+                class="analyse-button"
+                onclick="analysePayment()"
+            >
+
+                Analyse Payment
+
+                <span>→</span>
+
+            </button>
+
+
+            <button
+                class="demo-button"
+                onclick="loadDemo()"
+            >
+                Try a sample scam
+            </button>
+
+        </div>
+
+
+        <!-- CHECKS -->
+
+        <div class="checker-side">
+
+            <div class="side-shield">
+                S
+            </div>
+
+            <h3>
+                What ScamShield checks
+            </h3>
+
+            <div class="check-list">
+
+                <div>
+                    <span>01</span>
+                    Recipient behaviour
+                    <b>✓</b>
+                </div>
+
+                <div>
+                    <span>02</span>
+                    Transaction amount
+                    <b>✓</b>
+                </div>
+
+                <div>
+                    <span>03</span>
+                    Message language
+                    <b>✓</b>
+                </div>
+
+                <div>
+                    <span>04</span>
+                    Urgency & threats
+                    <b>✓</b>
+                </div>
+
+                <div>
+                    <span>05</span>
+                    Suspicious patterns
+                    <b>✓</b>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================
+         RESULT
+    ====================================== -->
+
+    <div class="result" id="result">
+
+        <div class="result-top">
+
+            <div>
+
+                <div class="section-number">
+                    ANALYSIS COMPLETE
+                </div>
+
+                <h2>
+                    Payment
+                    <span>risk result.</span>
+                </h2>
+
+            </div>
+
+            <div class="analysis-complete">
+                SCAN COMPLETE
+            </div>
+
+        </div>
+
+
+        <div class="result-grid">
+
+            <!-- SCORE -->
+
+            <div class="score-panel">
+
+                <small>RISK SCORE</small>
+
+                <div class="big-score">
+
+                    <span id="riskScore">0</span>
+
+                    <em>%</em>
+
+                </div>
+
+                <div class="score-track">
+
+                    <div id="riskBar"></div>
+
+                </div>
+
+                <span
+                    class="risk-level"
+                    id="riskLevel"
+                >
+                    LOW RISK
+                </span>
+
+                <p>
+                    This score is based on the signals detected
+                    in the payment details you provided.
+                </p>
+
+            </div>
+
+
+            <!-- SIGNALS -->
+
+            <div class="signals-panel">
+
+                <div class="panel-heading">
+
+                    <h3>
+                        Why this score?
+                    </h3>
+
+                    <span>
+                        EXPLAINABLE SIGNALS
+                    </span>
+
+                </div>
+
+                <div id="signals"></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PAUSE -->
+
+        <div class="pause">
+
+            <div class="pause-icon">
+                !
+            </div>
+
+            <div class="pause-text">
+
+                <small>
+                    SCAMSHIELD PAUSE
+                </small>
+
+                <h3>
+                    Payment looks risky?
+                </h3>
+
+                <p>
+                    Take a moment to verify the recipient before sending.
+                </p>
+
+            </div>
+
+            <div class="pause-actions">
+
+                <button onclick="verifyPayment()">
+                    Verify
+                </button>
+
+                <button onclick="cancelPayment()">
+                    Cancel
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- =========================================
+     REPORT TO AUTHORITY
+     Hidden until risk score is HIGH
+========================================= -->
+
+<div
+    class="authority-report"
+    id="authorityReport"
+    style="display: none;"
+>
+
+    <div class="authority-report-icon">
+        ⚠
+    </div>
+
+
+    <div class="authority-report-content">
+
+        <small>
+            SCAMSHIELD REPORT
+        </small>
+
+        <h3>
+            Report this suspicious payment
+        </h3>
+
+        <p>
+            This payment request has been classified as high risk.
+            If you believe it is fraudulent, you can prepare a report
+            with the details detected by ScamShield.
+        </p>
+
+
+        <!-- REPORT SUMMARY -->
+
+        <div class="report-summary">
+
+            <div class="report-item">
+
+                <span>
+                    RECIPIENT
+                </span>
+
+                <strong id="reportUpi">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="report-item">
+
+                <span>
+                    AMOUNT
+                </span>
+
+                <strong id="reportAmount">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="report-item">
+
+                <span>
+                    RISK SCORE
+                </span>
+
+                <strong id="reportScore">
+                    —
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="authority-report-button"
+            onclick="openAuthorityReport()"
+        >
+            REPORT TO AUTHORITY
+            <span>→</span>
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================
+     REPORT FORM
+========================================= -->
+
+<div
+    class="authority-report-form"
+    id="authorityReportForm"
+    style="display: none;"
+>
+
+    <div class="report-form-header">
+
+        <div>
+
+            <small>
+                REPORT DETAILS
+            </small>
+
+            <h3>
+                Prepare your report
+            </h3>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="report-close"
+            onclick="closeAuthorityReport()"
+            aria-label="Close report"
+        >
+            ×
+        </button>
+
+    </div>
+
+
+    <div class="report-form-grid">
+
+        <div class="report-field">
+
+            <label>
+                RECIPIENT / UPI ID
+            </label>
+
+            <input
+                type="text"
+                id="reportFormUpi"
+                readonly
+            >
+
+        </div>
+
+
+        <div class="report-field">
+
+            <label>
+                PAYMENT AMOUNT
+            </label>
+
+            <input
+                type="text"
+                id="reportFormAmount"
+                readonly
+            >
+
+        </div>
+
+
+        <div class="report-field">
+
+            <label>
+                RISK SCORE
+            </label>
+
+            <input
+                type="text"
+                id="reportFormScore"
+                readonly
+            >
+
+        </div>
+
+
+        <div class="report-field report-full">
+
+            <label>
+                SUSPICIOUS MESSAGE
+            </label>
+
+            <textarea
+                id="reportFormMessage"
+                readonly
+            ></textarea>
+
+        </div>
+
+
+        <div class="report-field report-full">
+
+            <label>
+                DETECTED SIGNALS
+            </label>
+
+            <textarea
+                id="reportFormSignals"
+                readonly
+            ></textarea>
+
+        </div>
+
+
+        <div class="report-field report-full">
+
+            <label>
+                ADDITIONAL DETAILS
+            </label>
+
+            <textarea
+                id="reportAdditionalDetails"
+                placeholder="Add anything else that may help explain the incident..."
+            ></textarea>
+
+        </div>
+
+    </div>
+
+
+    <div class="report-form-actions">
+
+        <button
+            type="button"
+            class="report-cancel-button"
+            onclick="closeAuthorityReport()"
+        >
+            Cancel
+        </button>
+
+
+        <button
+            type="button"
+            class="authority-submit-button"
+            onclick="submitAuthorityReport()"
+        >
+            PREPARE REPORT
+            <span>→</span>
+        </button>
+
+    </div>
+
+
+    <div
+        class="report-disclaimer"
+    >
+        ScamShield prepares the information for reporting.
+        No report is sent to an authority until an official
+        reporting service is connected.
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================
+     FEATURES
+========================================= -->
+
+<section
+    class="features-section"
+    id="features"
+>
+
+    <div class="section-heading">
+
+        <h2>
+            More than
+            <span>a score.</span>
+        </h2>
+
+        <p>
+            ScamShield can also inspect suspicious messages,
+            links and common scam scenarios.
+        </p>
+
+    </div>
+
+
+    <div class="feature-grid">
+
+
+        <!-- MESSAGE SCANNER -->
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                ✉
+            </div>
+
+            <div class="feature-number">
+                TOOL 01
+            </div>
+
+            <h3>
+                Message Scanner
+            </h3>
+
+            <p>
+                Detect urgency, threats, payment requests and
+                suspicious language.
+            </p>
+
+            <textarea
+                id="messageScanner"
+                placeholder="Paste a suspicious message..."
+            ></textarea>
+
+            <button
+                class="feature-button"
+                onclick="scanMessage()"
+            >
+                Scan Message
+            </button>
+
+            <div
+                class="mini-result"
+                id="messageResult"
+            ></div>
+
+        </div>
+
+
+        <!-- LINK CHECKER -->
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                ↗
+            </div>
+
+            <div class="feature-number">
+                TOOL 02
+            </div>
+
+            <h3>
+                Suspicious Link Checker
+            </h3>
+
+            <p>
+                Check URLs for suspicious patterns, unsafe schemes
+                and common scam indicators.
+            </p>
+
+            <input
+                type="text"
+                id="linkInput"
+                placeholder="https://example.com"
+            >
+
+            <button
+                class="feature-button"
+                onclick="checkLink()"
+            >
+                Check Link
+            </button>
+
+            <div
+                class="mini-result"
+                id="linkResult"
+            ></div>
+
+        </div>
+
+
+        <!-- SIMULATOR -->
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                ◈
+            </div>
+
+            <div class="feature-number">
+                TOOL 03
+            </div>
+
+            <h3>
+                Scam Simulator
+            </h3>
+
+            <p>
+                See how ScamShield reacts to common real-world
+                scam scenarios.
+            </p>
+
+            <select id="scamType">
+
+                <option value="kyc">
+                    KYC Scam
+                </option>
+
+                <option value="support">
+                    Fake Support
+                </option>
+
+                <option value="job">
+                    Fake Job
+                </option>
+
+                <option value="investment">
+                    Investment Scam
+                </option>
+
+                <option value="lottery">
+                    Lottery Scam
+                </option>
+
+            </select>
+
+            <button
+                class="feature-button"
+                onclick="runSimulator()"
+            >
+                Run Simulation
+            </button>
+
+            <div
+                class="mini-result"
+                id="simulatorResult"
+            ></div>
+
+        </div>
+
+
+        <!-- HISTORY -->
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                ◷
+            </div>
+
+            <div class="feature-number">
+                TOOL 04
+            </div>
+
+            <h3>
+                Protection History
+            </h3>
+
+            <p>
+                Track how many payments you've checked and how
+                much risky activity was detected.
+            </p>
+
+            <div class="history-grid">
+
+                <div>
+                    <strong id="totalScans">0</strong>
+                    <small>SCANS</small>
+                </div>
+
+                <div>
+                    <strong id="highRiskScans">0</strong>
+                    <small>HIGH RISK</small>
+                </div>
+
+                <div>
+                    <strong id="protectedAmount">₹0</strong>
+                    <small>CHECKED</small>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     HOW IT WORKS
+========================================= -->
+
+<section id="how">
+
+    <div class="section-heading centered">
+
+        <h2>
+            From payment
+            <span>to protection.</span>
+        </h2>
+
+    </div>
+
+
+    <div class="steps">
+
+        <div class="step">
+
+            <div class="step-number">
+                01
+            </div>
+
+            <h3>
+                Enter
+            </h3>
+
+            <p>
+                Add the recipient, amount and any message
+                attached to the payment.
+            </p>
+
+        </div>
+
+        <div class="step-line"></div>
+
+        <div class="step">
+
+            <div class="step-number">
+                02
+            </div>
+
+            <h3>
+                Analyse
+            </h3>
+
+            <p>
+                ScamShield checks multiple risk signals and
+                suspicious patterns.
+            </p>
+
+        </div>
+
+        <div class="step-line"></div>
+
+        <div class="step">
+
+            <div class="step-number">
+                03
+            </div>
+
+            <h3>
+                Decide
+            </h3>
+
+            <p>
+                See the score, understand the reasons and
+                pause before sending.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     SCAM PATTERNS
+========================================= -->
+
+<section class="scams-section" id="scams">
+
+    <div class="section-heading">
+
+
+        <h2>
+            Know the
+            <span>warning signs.</span>
+        </h2>
+
+    </div>
+
+
+    <div class="scam-grid">
+
+        <div class="scam-card">
+            <span>01</span>
+
+            <h3>
+                KYC Urgency
+            </h3>
+
+            <p>
+                Messages claiming your account will be blocked
+                unless you immediately verify details.
+            </p>
+
+            <small>
+                HIGH-RISK PATTERN
+            </small>
+        </div>
+
+
+        <div class="scam-card">
+            <span>02</span>
+
+            <h3>
+                Fake Support
+            </h3>
+
+            <p>
+                Someone pretending to be customer support and
+                asking you to make a payment.
+            </p>
+
+            <small>
+                COMMON SCAM
+            </small>
+        </div>
+
+
+        <div class="scam-card">
+            <span>03</span>
+
+            <h3>
+                Fake Jobs
+            </h3>
+
+            <p>
+                Job offers requesting registration fees,
+                deposits or upfront payments.
+            </p>
+
+            <small>
+                PAYMENT WARNING
+            </small>
+        </div>
+
+
+        <div class="scam-card">
+            <span>04</span>
+
+            <h3>
+                Investment Traps
+            </h3>
+
+            <p>
+                Promises of guaranteed returns combined with
+                pressure to transfer money quickly.
+            </p>
+
+            <small>
+                HIGH-RISK PATTERN
+            </small>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer>
+
+    <div class="brand">
+
+        <div class="brand-shield">S</div>
+
+        <div>
+            <strong>ScamShield</strong>
+        </div>
+
+    </div>
+
+    <div>
+        Made with 💚, by Team Dual Core
+    </div>
+
+</footer>
+
+
+<!-- TOAST -->
+
+<div
+    class="toast"
+    id="toast"
+></div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
